@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculator</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: #f4f4f4;
+    }
+
+    .calculator {
+        background: #2d89ef;
+        padding: 20px;
+        border-radius: 20px;
+        width: 260px;
+    }
+
+    .display {
+        background: #e0e0e0;
+        height: 60px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        text-align: right;
+        padding: 15px;
+        font-size: 24px;
+        overflow: hidden;
+    }
+
+    .buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+    }
+
+    button {
+        padding: 20px;
+        font-size: 18px;
+        border: none;
+        border-radius: 10px;
+        background: #1e5fa8;
+        color: white;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #174a84;
+    }
+
+    .operator {
+        background: #1565c0;
+    }
+
+    .equal {
+        background: #0d47a1;
+    }
+
+</style>
+</head>
+<body>
+
+<div class="calculator">
+    <div id="display" class="display">0</div>
+
+    <div class="buttons">
+        <button onclick="press('7')">7</button>
+        <button onclick="press('8')">8</button>
+        <button onclick="press('9')">9</button>
+        <button class="operator" onclick="press('+')">+</button>
+
+        <button onclick="press('4')">4</button>
+        <button onclick="press('5')">5</button>
+        <button onclick="press('6')">6</button>
+        <button class="operator" onclick="press('-')">-</button>
+
+        <button onclick="press('1')">1</button>
+        <button onclick="press('2')">2</button>
+        <button onclick="press('3')">3</button>
+        <button class="operator" onclick="press('*')">*</button>
+
+        <button onclick="press('0')">0</button>
+        <button onclick="clearDisplay()">C</button>
+        <button class="equal" onclick="calculate()">=</button>
+        <button class="operator" onclick="press('/')">/</button>
+    </div>
+</div>
+
+<script>
+    let display = document.getElementById("display");
+
+    function press(value) {
+        if (display.innerText === "0") {
+            display.innerText = value;
+        } else {
+            display.innerText += value;
+        }
+    }
+
+    function clearDisplay() {
+        display.innerText = "0";
+    }
+
+    function calculate() {
+        try {
+            display.innerText = eval(display.innerText);
+        } catch {
+            display.innerText = "Error";
+        }
+    }
+</script>
+
+</body>
+</html>
